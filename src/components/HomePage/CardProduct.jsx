@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import useCartApi from "../../hooks/useCartApi"
-
+import "./styles/CardProduct.css"
 
 const CardProduct = ({ product }) => {
 
@@ -21,19 +21,22 @@ const CardProduct = ({ product }) => {
     }
 
   return (
-    <article onClick={handleNavigate}>
-        <header>
-            <img src={product.images[0].url} alt="" />
+    <article className="card" onClick={handleNavigate}>
+        <header className="card__header">
+            <img className="card__image card__image1" src={product.images[0].url} alt="" />
+            <img className="card__image card__image2" src={product.images[1].url} alt="" />
         </header>
-        <section>
-            <h4>{product.brand}</h4>
-            <h3>{product.title}</h3>
-            <article>
-                <h3>Price</h3>
-                <span>{product.price}</span>
+        <section className="card__body" >
+            <header className="card__body-header">
+                <h4 className="card__brand">{product.brand}</h4>
+                <h3 className="card__name">{product.title}</h3>
+            </header>
+            <article className="card__price">
+                <h3 className="card__price-label">Price</h3>
+                <span className="card__price-value">{product.price}</span>
             </article>
-            <button onClick={handleAddCard}>
-                <i className="bx bxs-cart-add"></i>
+            <button className="card__btn" onClick={handleAddCard}>
+                <i className="bx bxs-cart-add card__icon"></i>
             </button>
         </section>
     </article>
