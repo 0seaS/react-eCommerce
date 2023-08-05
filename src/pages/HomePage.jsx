@@ -4,9 +4,15 @@ import CardProduct from "../components/HomePage/CardProduct"
 
 const HomePage = () => {
 
+    //Prueva
+    const cart = useSelector(reducer => reducer.cart)
+    console.log(cart)
+    //ELIMINAR
+
+    
+
   const products = useSelector(reducer => reducer.products)
 
-  console.log(products)
 
   return (
     <div>

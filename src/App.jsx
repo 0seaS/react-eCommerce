@@ -6,6 +6,10 @@ import { useEffect } from 'react'
 import { getAllProductsThunk } from './store/slices/products.slice'
 import { useDispatch } from 'react-redux'
 import Header from './components/shared/Header'
+import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
+import ProductIdPage from './pages/ProductIdPage'
+import CartPage from './pages/CartPage'
 
 function App() {
 
@@ -20,6 +24,10 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<HomePage/>}/>
+        <Route path='/register' element={<RegisterPage/>}/>
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/product/:id' element={<ProductIdPage/>}/>
+        <Route path='/cart' element={<CartPage></CartPage>}/>
       </Routes>
     </div>
   )
