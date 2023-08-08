@@ -1,6 +1,6 @@
 import axios from "axios"
 import getConfigToken from "../utils/getConfigToken"
-import { getCartThunk } from "../store/slices/cart.slice"
+import { getCartThunk, deleteCartG } from "../store/slices/cart.slice"
 import { useDispatch } from "react-redux"
 
 
@@ -19,7 +19,19 @@ const useCartApi = () => {
             })
             .catch(err => console.log(err))
     }
-    return {addProductInCart}
+
+    // DELETE
+    const deleteProductInCart = (id) => {
+        const url = `${baseUrl}/cart/${id}`
+        axios.delete(url, getConfigToken())
+            .then(res => {
+                console.log(res.data)
+               // dispatch(getCartThunk())
+               dispatch(deleteCartG(id))
+            })
+            .catch(err => console.log(err))
+    }
+    return {addProductInCart, deleteProductInCart}
 }
 
 export default useCartApi

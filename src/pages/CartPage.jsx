@@ -1,10 +1,14 @@
 import { useDispatch, useSelector } from "react-redux"
 import { getCartThunk } from "../store/slices/cart.slice"
 import { useEffect } from "react"
+import ProductInCart from "../components/CartPage/ProductInCart"
+import usePurchases from "../hooks/usePurchases"
 
 
 const CartPage = () => {
 
+
+    // useSelector() => Traer los estados globales
     const cart = useSelector(reducer => reducer.cart)
     const dispatch = useDispatch()
     console.log(cart)
@@ -12,10 +16,38 @@ const CartPage = () => {
     useEffect(() => {
         dispatch(getCartThunk())
     }, [])
+
+    const totalAmount = cart.reduce((acc, cv) => {
+      const subTotal = cv.quantity * cv.product.price 
+      return acc + subTotal
+    }, 0)
+
+    //hacer una compra
+    const { makeAPurchase } = usePurchases()
     
+    const handlePurchase = () => {
+      makeAPurchase()
+    }
 
   return (
-    <div>CartPage</div>
+    <section>
+      <h2>Cart</h2>
+      <div>
+        {
+          cart.map(prod => (
+            <ProductInCart
+              key={prod.id}
+              prodCart={prod}
+            />
+          ))
+        }
+      </div>
+      <footer>
+        <span>total</span>
+        <h3>{totalAmount}</h3>
+        <button onClick={handlePurchase}>Checkout</button>
+      </footer>
+    </section>
   )
 }
 
