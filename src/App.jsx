@@ -10,6 +10,8 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import ProductIdPage from './pages/ProductIdPage'
 import CartPage from './pages/CartPage'
+import ProtectedRoutes from './pages/ProtectedRoutes'
+import PurchasesPage from './pages/PurchasesPage'
 
 function App() {
 
@@ -27,7 +29,10 @@ function App() {
         <Route path='/register' element={<RegisterPage/>}/>
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/product/:id' element={<ProductIdPage/>}/>
-        <Route path='/cart' element={<CartPage/>}/>
+        <Route element={<ProtectedRoutes/>}>
+          <Route path='/cart' element={<CartPage/>}/>
+          <Route path='/purchases' element={<PurchasesPage/>}/>
+        </Route>
       </Routes>
     </div>
   )

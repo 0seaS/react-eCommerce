@@ -11,7 +11,6 @@ const CartPage = () => {
     // useSelector() => Traer los estados globales
     const cart = useSelector(reducer => reducer.cart)
     const dispatch = useDispatch()
-    console.log(cart)
 
     useEffect(() => {
         dispatch(getCartThunk())
